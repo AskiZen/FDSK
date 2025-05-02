@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    background-color: #2e3436;
+    color: #eeeeec;
+    font-family: 'Ubuntu Mono', monospace;
+}
+canvas#bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: 0;
+}
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 3em auto;
+    padding: 2em;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    box-shadow: 0 0 15px #555;
+}
+a {
+    color: #729fcf;
+    text-decoration: none;
+}
+h1 {
+    font-size: 2em;
+}
+.file-list {
+    list-style: none;
+    padding: 0;
+}
+.file-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px;
+    border-bottom: 1px solid #444;
+}
+.delete {
+    color: red;
+    margin-left: 10px;
+}
+.upload-form {
+    margin-bottom: 1em;
+}
+input[type="file"] {
+    margin-right: 0.5em;
+}
+button {
+    background: #555753;
+    color: #eeeeec;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.logout {
+    margin-top: 1em;
+    background: #a40000;
+}
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.login-box {
+    background: #000;
+    padding: 2em;
+    border-radius: 8px;
+    box-shadow: 0 0 15px #222;
+}
+.login-box h2 {
+    margin-bottom: 1em;
+}
