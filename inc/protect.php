@@ -22,9 +22,9 @@ function getDeviceInfo() {
 function isBanned() {
     $ip = getIP();
     $subnet = getSubnet($ip);
-    if (!file_exists(__DIR__ . '/../data/banned.txt')) return;
+    if (!file_exists(__DIR__ . '/../bans/banned.txt')) return;
 
-    $banned = file(__DIR__ . '/../data/banned.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    $banned = file(__DIR__ . '/../bans/banned.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     foreach ($banned as $line) {
         if (str_contains($line, "IP:$ip") || str_contains($line, "Subnet:$subnet")) {
             http_response_code(403);
@@ -43,7 +43,7 @@ function banUser($inputPassword) {
     $entry_ip = "IP:$ip | Time:$timestamp | Device:$device | Input:$inputPassword\n";
     $entry_subnet = "Subnet:$subnet | Time:$timestamp | Device:$device\n";
 
-    file_put_contents(__DIR__ . '/../data/banned.txt', $entry_ip, FILE_APPEND);
-    file_put_contents(__DIR__ . '/../data/banned.txt', $entry_subnet, FILE_APPEND);
-    file_put_contents(__DIR__ . '/../data/ban_log.txt', $log, FILE_APPEND);
+    file_put_contents(__DIR__ . '/../bans/banned.txt', $entry_ip, FILE_APPEND);
+    file_put_contents(__DIR__ . '/../bans/banned.txt', $entry_subnet, FILE_APPEND);
+    file_put_contents(__DIR__ . '/../bans/ban_log.txt', $log, FILE_APPEND);
 }

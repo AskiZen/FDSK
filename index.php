@@ -17,9 +17,34 @@ $files = array_diff(scandir(__DIR__ . "/data"), ['.', '..']);
     <meta charset="UTF-8">
     <title>📁 Файли</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .top-right {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+        }
+        .admin-btn {
+            background: #800000;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .admin-btn:hover {
+            background: #a00000;
+        }
+    </style>
 </head>
 <body>
 <canvas id="bg"></canvas>
+
+<?php if ($role === 'admin'): ?>
+<div class="top-right">
+    <a href="admin_panel.php" class="admin-btn">⚙️ Адмін-панель</a>
+</div>
+<?php endif; ?>
+
 <div class="container">
     <h1>📁 Локальні файли</h1>
 
@@ -45,6 +70,9 @@ $files = array_diff(scandir(__DIR__ . "/data"), ['.', '..']);
         <button type="submit" class="logout">🚪 Вийти</button>
     </form>
 </div>
+</body>
+</html>
+
 
 <script src="bg.js"></script>
 <script>
