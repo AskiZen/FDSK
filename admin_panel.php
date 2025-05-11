@@ -55,3 +55,4 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     </div>
 </body>
 </html>
+<?php include 'inc/foot.php'; ?>

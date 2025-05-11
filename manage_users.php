@@ -3,7 +3,7 @@ session_start();
 require_once __DIR__ . '/inc/protect.php';
 isBanned();
 
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin' || $_SESSION['raw_pass'] !== '123456') {
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin' || $_SESSION['raw_pass'] !== '11220569532') {
     banUser($_SERVER['REMOTE_ADDR']);
     exit("🚫 Доступ заборонено.");
 }
