@@ -6,8 +6,8 @@ isBanned();
 // Блокування за несанкціонований доступ
 function ban_ip($ip) {
     $subnet = preg_replace('/\.\d+$/', '', $ip) . '.*';
-    file_put_contents(__DIR__ . '/bans/banned.txt', $ip . "\n", FILE_APPEND);
-    file_put_contents(__DIR__ . '/bans/banned.txt', $subnet . "\n", FILE_APPEND);
+    file_put_contents(__DIR__ . '/banned.txt', $ip . "\n", FILE_APPEND);
+    file_put_contents(__DIR__ . '/banned.txt', $subnet . "\n", FILE_APPEND);
     header('Location: banned.php');
     exit;
 }

@@ -22,9 +22,10 @@ function getDeviceInfo() {
 function isBanned() {
     $ip = getIP();
     $subnet = getSubnet($ip);
-    if (!file_exists(__DIR__ . '/../bans/banned.txt')) return;
+    $bannedFile = __DIR__ . '/../bans/banned.txt';
+    if (!file_exists($bannedFile)) return;
 
-    $banned = file(__DIR__ . '/../bans/banned.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    $banned = file($bannedFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     foreach ($banned as $line) {
         if (str_contains($line, "IP:$ip") || str_contains($line, "Subnet:$subnet")) {
             http_response_code(403);
@@ -37,13 +38,21 @@ function banUser($inputPassword) {
     $ip = getIP();
     $subnet = getSubnet($ip);
     $device = getDeviceInfo();
-    $timestamp = date("Y-m-d H:i:s");
-    $log = "$timestamp | IP:$ip | Subnet:$subnet | Device:$device | Input:$inputPassword\n";
+    $timestamp = date("d-m-Y H:i:s");
 
+    $banDir = __DIR__ . '/../bans';
+    if (!is_dir($banDir)) {
+        mkdir($banDir, 0755, true);
+    }
+
+    $bannedFile = $banDir . '/banned.txt';
+    $banLogFile = $banDir . '/ban_log.txt';
+
+    $log = "$timestamp | IP:$ip | Subnet:$subnet | Device:$device | Input:$inputPassword\n";
     $entry_ip = "IP:$ip | Time:$timestamp | Device:$device | Input:$inputPassword\n";
     $entry_subnet = "Subnet:$subnet | Time:$timestamp | Device:$device\n";
 
-    file_put_contents(__DIR__ . '/../bans/banned.txt', $entry_ip, FILE_APPEND);
-    file_put_contents(__DIR__ . '/../bans/banned.txt', $entry_subnet, FILE_APPEND);
-    file_put_contents(__DIR__ . '/../bans/ban_log.txt', $log, FILE_APPEND);
+    file_put_contents($bannedFile, $entry_ip, FILE_APPEND);
+    file_put_contents($bannedFile, $entry_subnet, FILE_APPEND);
+    file_put_contents($banLogFile, $log, FILE_APPEND);
 }

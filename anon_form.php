@@ -13,7 +13,7 @@ if (!is_dir($formDir)) mkdir($formDir);
 // антиспам: дозволяємо лише 1 запит на годину з одного IP
 if (file_exists($timeFile)) {
     $times = json_decode(file_get_contents($timeFile), true);
-    if (isset($times[$ip]) && time() - $times[$ip] < 3600) {
+    if (isset($times[$ip]) && time() - $times[$ip] < 1) {
         $errors[] = "⏳ Повторне відправлення доступне через 1 годину.";
     }
 } else {
