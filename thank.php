@@ -1,6 +1,6 @@
 <?php
 // 60 секунд до перенаправлення
-$redirectTime = 60;
+$redirectTime = 30;
 ?>
 
 <!DOCTYPE html>
