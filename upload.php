@@ -7,8 +7,17 @@ if ($_SESSION['role'] !== 'admin') {
 
 if (!empty($_FILES['file'])) {
     $file = $_FILES['file'];
-    $dest = __DIR__ . '/data/' . basename($file['name']);
-    move_uploaded_file($file['tmp_name'], $dest);
+    $filename = basename($file['name']);
+    $dest = __DIR__ . '/data/' . $filename;
+
+    if (move_uploaded_file($file['tmp_name'], $dest)) {
+        // Якщо передано опис — зберігаємо його у файл .txt
+        if (!empty($_POST['description'])) {
+            $desc = trim($_POST['description']);
+            file_put_contents(__DIR__ . '/data/' . $filename . '.txt', $desc);
+        }
+    }
 }
+
 header("Location: index.php");
 exit;
