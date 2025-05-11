@@ -7,7 +7,7 @@ $maxAttempts = 3;
 $usersDir = __DIR__ . '/users';
 if (!is_dir($usersDir)) mkdir($usersDir);
 
-$adminPassword = '11220569532'; // Статичний пароль адміна
+$adminPassword = '123456'; // Статичний пароль адміна
 
 if (!isset($_SESSION['attempts'])) {
     $_SESSION['attempts'] = 0;
