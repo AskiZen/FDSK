@@ -13,7 +13,7 @@ function ban_ip($ip) {
 }
 
 $client_ip = $_SERVER['REMOTE_ADDR'];
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin' || ($_SESSION['raw_pass'] ?? '') !== '11220569532') {
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin' || ($_SESSION['raw_pass'] ?? '') !== '123456') {
     ban_ip($client_ip);
 }
 
